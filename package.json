@@ -2,14 +2,18 @@
   "name": "engine",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "bun-sdl3": "git+https://github.com/Kasparsu/bun-sdl3.git"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "typescript": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   },
   "trustedDependencies": [
     "bun-sdl3"

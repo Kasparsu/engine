@@ -2,8 +2,8 @@ import SDL from "bun-sdl3/src/SDL";
 
 export class Renderer {
   instance: any;
-  constructor(windowInstance: any, index = -1, flags = 0) {
-    this.instance = SDL.Renderer.create(windowInstance, index, flags);
+  constructor(windowInstance: any) {
+    this.instance = SDL.Renderer.create(windowInstance);
   }
 
   get raw() {
