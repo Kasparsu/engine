@@ -1,1 +1,4 @@
-console.log("Hello via Bun!");
+import { App } from "./src/app";
+
+const app = new App();
+app.start();
