@@ -1,6 +1,7 @@
 import SDL from "bun-sdl3/src/SDL";
 import { Window } from "./window";
 import { Renderer } from "./renderer";
+import { Game } from "./game";
 
 export class Engine {
   window: Window;
@@ -18,17 +19,31 @@ export class Engine {
     this.renderer = new Renderer(this.window.raw);
   }
 
-  run(): void {
+  async run(game?: Game): Promise<void> {
     this.running = true;
+
+    if (game) await game.init();
+
+    let last = (globalThis as any).performance?.now ? (globalThis as any).performance.now() : Date.now();
+
     while (this.running) {
       const event = SDL.Events.poll();
       if (event) {
         if (event.type === SDL.Events.QUIT) this.running = false;
       }
 
-      this.renderer.setDrawColor(255, 0, 0, 255);
-      this.renderer.clear();
-      this.renderer.present();
+      const now = (globalThis as any).performance?.now ? (globalThis as any).performance.now() : Date.now();
+      const dt = (now - last) / 1000;
+      last = now;
+
+      if (game) {
+        game.update(dt);
+        game.draw(this.renderer);
+      } else {
+        this.renderer.setDrawColor(255, 0, 0, 255);
+        this.renderer.clear();
+        this.renderer.present();
+      }
     }
   }
 
