@@ -1,5 +1,5 @@
-import { UILayer } from "./UILayer";
-import type { IRenderer } from "./IRenderer";
+import { UILayer } from "../UILayer";
+import type { IRenderer } from "../IRenderer";
 
 export class PauseMenuLayer extends UILayer {
   constructor() {

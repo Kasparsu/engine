@@ -1,5 +1,5 @@
-import { BaseGame } from "./BaseGame";
-import type { IRenderer } from "./IRenderer";
+import { BaseGame } from "../BaseGame";
+import type { IRenderer } from "../IRenderer";
 
 export class MyGame extends BaseGame {
   override update(dt: number): void {

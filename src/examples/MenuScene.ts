@@ -1,7 +1,7 @@
-import { Scene } from "./Scene";
+import { Scene } from "../Scene";
 import { HUDLayer } from "./HUDLayer";
 import { PauseMenuLayer } from "./PauseMenuLayer";
-import type { Game } from "./Game";
+import type { Game } from "../Game";
 
 export class MenuScene extends Scene {
   constructor(game: Game) {

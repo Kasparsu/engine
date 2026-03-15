@@ -1,6 +1,6 @@
-import { Scene } from "./Scene";
+import { Scene } from "../Scene";
 import { HUDLayer } from "./HUDLayer";
-import type { Game } from "./Game";
+import type { Game } from "../Game";
 
 export class GameplayScene extends Scene {
   constructor(game: Game) {
@@ -13,7 +13,7 @@ export class GameplayScene extends Scene {
     // initialize gameplay-specific resources
   }
 
-  update(dt: number): void {
+  override update(dt: number): void {
     // gameplay update logic
   }
 }

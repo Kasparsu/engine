@@ -3,6 +3,10 @@
         "/^bun install$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^bun run typecheck$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }
