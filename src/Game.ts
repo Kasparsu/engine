@@ -1,41 +1,24 @@
 import type { IRenderer } from "./IRenderer";
-
-export type InitFn = () => void | Promise<void>;
-export type UpdateFn = (dt: number) => void;
-export type DrawFn = (renderer: IRenderer) => void;
+import type { Scene } from "./Scene";
 
 export class Game {
-  private initFn?: InitFn;
-  private updateFn?: UpdateFn;
-  private drawFn?: DrawFn;
+  activeScene?: Scene;
 
-  constructor(init?: InitFn, update?: UpdateFn, draw?: DrawFn) {
-    this.initFn = init;
-    this.updateFn = update;
-    this.drawFn = draw;
-  }
+  constructor() {}
 
   async init(): Promise<void> {
-    if (this.initFn) await this.initFn();
+    if (this.activeScene) await this.activeScene.init();
   }
 
   update(dt: number): void {
-    if (this.updateFn) this.updateFn(dt);
+    if (this.activeScene) this.activeScene.update(dt);
   }
 
-  draw(renderer: IRenderer): void {
-    if (this.drawFn) this.drawFn(renderer);
+  draw(r: IRenderer): void {
+    if (this.activeScene) this.activeScene.draw(r);
   }
 
-  setInit(fn: InitFn) {
-    this.initFn = fn;
-  }
-
-  setUpdate(fn: UpdateFn) {
-    this.updateFn = fn;
-  }
-
-  setDraw(fn: DrawFn) {
-    this.drawFn = fn;
+  setScene(s: Scene) {
+    this.activeScene = s;
   }
 }
