@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Run TypeScript typecheck before committing
+echo "Running typecheck..."
+if ! bun run typecheck; then
+  echo "Typecheck failed. Aborting commit."
+  exit 1
+fi
+
+exit 0
