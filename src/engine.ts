@@ -40,9 +40,7 @@ export class Engine {
         game.update(dt);
         game.draw(this.renderer);
       } else {
-        this.renderer.setDrawColor(255, 0, 0, 255);
-        this.renderer.clear();
-        this.renderer.present();
+        
       }
     }
   }

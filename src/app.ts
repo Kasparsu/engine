@@ -1,6 +1,7 @@
 import { Engine } from "./engine";
 import { Game } from "./game";
-
+import { Renderer } from "./renderer";
+import { Window } from "./window";
 export class App {
   engine: Engine;
   game?: Game;
@@ -18,7 +19,19 @@ export class App {
     this.engine.stop();
   }
 
-  setGame(game: Game) {
+  createGame(game: Game) {
     this.game = game;
   }
+  createWindow(title: string, width: number, height: number, flags?: number) {
+    this.engine.window = new Window(title, width, height, flags as any);
+    return this;
+  }
+  createRenderer() {
+    this.engine.renderer = new Renderer(this.engine.window.raw);
+    return this;
+  }
+}
+
+export function createApp() {
+    return new App();
 }

@@ -4,18 +4,27 @@
   "workspaces": {
     "": {
       "name": "engine",
+      "dependencies": {
+        "bun-sdl3": "git+https://github.com/Kasparsu/bun-sdl3.git",
+      },
       "devDependencies": {
         "@types/bun": "latest",
+        "typescript": "latest",
       },
       "peerDependencies": {
-        "typescript": "^5",
+        "typescript": "^5.9.3",
       },
     },
   },
+  "trustedDependencies": [
+    "bun-sdl3",
+  ],
   "packages": {
     "@types/bun": ["@types/bun@1.3.10", "", { "dependencies": { "bun-types": "1.3.10" } }, "sha512-0+rlrUrOrTSskibryHbvQkDOWRJwJZqZlxrUs1u4oOoTln8+WIXBPmAuCF35SWB2z4Zl3E84Nl/D0P7803nigQ=="],
 
     "@types/node": ["@types/node@25.4.0", "", { "dependencies": { "undici-types": "~7.18.0" } }, "sha512-9wLpoeWuBlcbBpOY3XmzSTG3oscB6xjBEEtn+pYXTfhyXhIxC5FsBer2KTopBlvKEiW9l13po9fq+SJY/5lkhw=="],
+
+    "bun-sdl3": ["bun-sdl3@github:Kasparsu/bun-sdl3#61c6994", { "peerDependencies": { "typescript": "^5" } }, "Kasparsu-bun-sdl3-61c6994", "sha512-gAWL8gvjkWsIKOf4c+vbH6hy5yYElg/GIKBhCRDJQB9kR2TdoFTKEBO9W6tuzhGleCSSzHrwRB/YB2ug/MzLQg=="],
 
     "bun-types": ["bun-types@1.3.10", "", { "dependencies": { "@types/node": "*" } }, "sha512-tcpfCCl6XWo6nCVnpcVrxQ+9AYN1iqMIzgrSKYMB/fjLtV2eyAVEg7AxQJuCq/26R6HpKWykQXuSOq/21RYcbg=="],
 

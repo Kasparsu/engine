@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^bun install$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
