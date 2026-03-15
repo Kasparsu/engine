@@ -1,5 +1,5 @@
-import { BaseGame } from "./base-game";
-import { IRenderer } from "./interfaces";
+import { BaseGame } from "./BaseGame";
+import { IRenderer } from "./IRenderer";
 
 export class MyGame extends BaseGame {
   update(dt: number): void {

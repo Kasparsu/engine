@@ -1,7 +1,10 @@
 import SDL from "bun-sdl3/src/SDL";
-import { IWindow, IRenderer, IGame, EngineConfig } from "./interfaces";
-import { SDLWindow } from "./window";
-import { SDLRenderer } from "./renderer";
+import { IWindow } from "./IWindow";
+import { IRenderer } from "./IRenderer";
+import { IGame } from "./IGame";
+import { EngineConfig } from "./EngineConfig";
+import { SDLWindow } from "./SDLWindow";
+import { SDLRenderer } from "./SDLRenderer";
 
 export class Engine {
   window: IWindow;

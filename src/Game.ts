@@ -1,8 +1,8 @@
-import { Renderer } from "./renderer";
+import { IRenderer } from "./IRenderer";
 
 export type InitFn = () => void | Promise<void>;
 export type UpdateFn = (dt: number) => void;
-export type DrawFn = (renderer: Renderer) => void;
+export type DrawFn = (renderer: IRenderer) => void;
 
 export class Game {
   private initFn?: InitFn;
@@ -23,7 +23,7 @@ export class Game {
     if (this.updateFn) this.updateFn(dt);
   }
 
-  draw(renderer: Renderer): void {
+  draw(renderer: IRenderer): void {
     if (this.drawFn) this.drawFn(renderer);
   }
 
