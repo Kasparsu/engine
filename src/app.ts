@@ -19,7 +19,7 @@ export class App {
     this.engine.stop();
   }
 
-  createGame(game: Game) {
+  createGame() {
     this.game = game;
   }
   createWindow(title: string, width: number, height: number, flags?: number) {
