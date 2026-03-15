@@ -5,10 +5,12 @@ import type { IGame } from "./IGame";
 import type { EngineConfig } from "./EngineConfig";
 import { SDLWindow } from "./SDLWindow";
 import { SDLRenderer } from "./SDLRenderer";
+import { InputManager } from "./InputManager";
 
 export class Engine {
   window: IWindow;
   renderer: IRenderer;
+  input: InputManager;
   private running = false;
 
   constructor(cfg: EngineConfig | undefined = undefined, windowImpl?: IWindow, rendererImpl?: IRenderer) {
@@ -20,6 +22,7 @@ export class Engine {
 
     this.window = windowImpl ?? new SDLWindow(title, width, height);
     this.renderer = rendererImpl ?? new SDLRenderer(this.window.raw);
+    this.input = new InputManager();
   }
 
   async run(game?: IGame): Promise<void> {
@@ -32,6 +35,10 @@ export class Engine {
     while (this.running) {
       const event = SDL.Events.poll();
       if (event) {
+        // forward raw SDL event to input manager for best-effort mapping
+        try {
+          this.input.handleRawSDL(event);
+        } catch {}
         if (event.type === SDL.Events.QUIT) this.running = false;
       }
 
@@ -40,6 +47,15 @@ export class Engine {
       last = now;
 
       if (game) {
+        // ensure active scene receives input manager
+        try {
+          // @ts-ignore
+          if (game.activeScene && (game.activeScene as any).input === undefined) {
+            // @ts-ignore
+            (game.activeScene as any).input = this.input;
+          }
+        } catch {}
+
         game.update(dt);
         game.draw(this.renderer);
       } else {
