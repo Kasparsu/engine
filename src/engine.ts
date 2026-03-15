@@ -1,25 +1,25 @@
 import SDL from "bun-sdl3/src/SDL";
-import { Window } from "./window";
-import { Renderer } from "./renderer";
-import { Game } from "./game";
+import { IWindow, IRenderer, IGame, EngineConfig } from "./interfaces";
+import { SDLWindow } from "./window";
+import { SDLRenderer } from "./renderer";
 
 export class Engine {
-  window: Window;
-  renderer: Renderer;
+  window: IWindow;
+  renderer: IRenderer;
   private running = false;
 
-  constructor(
-    title = "Hello World",
-    width = 800,
-    height = 600,
-    flags = SDL.Window.WINDOW.RESIZABLE
-  ) {
+  constructor(cfg: EngineConfig | undefined = undefined, windowImpl?: IWindow, rendererImpl?: IRenderer) {
+    const title = cfg?.title ?? "Hello World";
+    const width = cfg?.width ?? 800;
+    const height = cfg?.height ?? 600;
+
     SDL.init(SDL.INIT.VIDEO);
-    this.window = new Window(title, width, height, flags);
-    this.renderer = new Renderer(this.window.raw);
+
+    this.window = windowImpl ?? new SDLWindow(title, width, height);
+    this.renderer = rendererImpl ?? new SDLRenderer(this.window.raw);
   }
 
-  async run(game?: Game): Promise<void> {
+  async run(game?: IGame): Promise<void> {
     this.running = true;
 
     if (game) await game.init();
@@ -40,7 +40,9 @@ export class Engine {
         game.update(dt);
         game.draw(this.renderer);
       } else {
-        
+        this.renderer.setDrawColor(255, 0, 0, 255);
+        this.renderer.clear();
+        this.renderer.present();
       }
     }
   }

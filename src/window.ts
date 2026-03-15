@@ -1,7 +1,9 @@
 import SDL from "bun-sdl3/src/SDL";
+import { IWindow, SDLWindowHandle } from "./interfaces";
 
-export class Window {
-  instance: any;
+export class SDLWindow implements IWindow {
+  instance: SDLWindowHandle;
+
   constructor(
     public title = "Hello World",
     public width = 800,

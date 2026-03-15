@@ -1,7 +1,8 @@
 import SDL from "bun-sdl3/src/SDL";
+import { IRenderer, SDLRendererHandle } from "./interfaces";
 
-export class Renderer {
-  instance: any;
+export class SDLRenderer implements IRenderer {
+  instance: SDLRendererHandle;
   constructor(windowInstance: any) {
     this.instance = SDL.Renderer.create(windowInstance);
   }
