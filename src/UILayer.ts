@@ -6,6 +6,9 @@ export abstract class UILayer {
 
   constructor(public name?: string) {}
   input?: InputManager;
+  constructorMessage() {
+    console.debug(`[UILayer] created ${this.name}`);
+  }
 
   abstract init(): Promise<void>;
   abstract update(dt: number): void;

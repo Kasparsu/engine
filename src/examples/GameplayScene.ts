@@ -5,6 +5,7 @@ import type { Game } from "../Game";
 export class GameplayScene extends Scene {
   constructor(game: Game) {
     super(game);
+    console.debug("[GameplayScene] created");
     this.addLayer(new HUDLayer());
   }
 

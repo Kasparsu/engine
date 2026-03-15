@@ -9,6 +9,7 @@ export abstract class Scene {
 
   constructor(public game: Game, input?: InputManager) {
     this.input = input;
+    console.debug(`[Scene] created ${this.constructor.name}`);
   }
 
   addLayer(layer: UILayer) {
@@ -20,10 +21,12 @@ export abstract class Scene {
   }
 
   async init(): Promise<void> {
+    console.debug(`[Scene] init ${this.constructor.name}`);
     // scenes can override; default initializes layers
     for (const layer of this.layers) {
       // provide input manager to layers
       if (this.input) layer.input = this.input;
+      if ((layer as any).constructor?.name) console.debug(`[Scene] init layer ${(layer as any).constructor.name}`);
       await layer.init();
     }
   }

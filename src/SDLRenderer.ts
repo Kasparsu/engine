@@ -5,6 +5,7 @@ export class SDLRenderer implements IRenderer {
   instance: SDLRendererHandle;
   constructor(windowInstance: any) {
     this.instance = SDL.Renderer.create(windowInstance);
+    console.debug("[SDLRenderer] created");
   }
 
   get raw() {

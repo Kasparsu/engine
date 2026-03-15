@@ -5,9 +5,11 @@ export class PauseMenuLayer extends UILayer {
   constructor() {
     super("PauseMenu");
     this.visible = false;
+    console.debug("[PauseMenuLayer] created");
   }
 
   async init(): Promise<void> {
+    console.debug("[PauseMenuLayer] init");
     // load menu assets
   }
 

@@ -3,7 +3,7 @@ import type { IRenderer } from "./IRenderer";
 
 export class BaseGame implements IGame {
   async init(): Promise<void> {
-    // no-op by default
+    console.debug("[BaseGame] init (no-op)");
   }
 
   update(dt: number): void {

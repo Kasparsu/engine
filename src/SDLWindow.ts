@@ -11,6 +11,7 @@ export class SDLWindow implements IWindow {
     public flags = SDL.Window.WINDOW.RESIZABLE
   ) {
     this.instance = SDL.Window.create(this.title, this.width, this.height, this.flags);
+    console.debug(`[SDLWindow] created title=${this.title} size=${this.width}x${this.height}`);
   }
 
   get raw() {

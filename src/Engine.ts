@@ -23,10 +23,12 @@ export class Engine {
     this.window = windowImpl ?? new SDLWindow(title, width, height);
     this.renderer = rendererImpl ?? new SDLRenderer(this.window.raw);
     this.input = new InputManager();
+    console.debug(`[Engine] created title=${title} size=${width}x${height}`);
   }
 
   async run(game?: IGame): Promise<void> {
     this.running = true;
+    console.debug("[Engine] run started");
 
     if (game) await game.init();
 

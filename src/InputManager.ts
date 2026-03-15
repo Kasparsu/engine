@@ -10,6 +10,10 @@ export class InputManager {
   keyState = new Map<string, boolean>();
   listeners: InputListener[] = [];
 
+  constructor() {
+    console.debug("[InputManager] created");
+  }
+
   isKeyDown(key: string): boolean {
     return !!this.keyState.get(key);
   }

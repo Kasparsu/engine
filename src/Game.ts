@@ -4,9 +4,12 @@ import type { Scene } from "./Scene";
 export class Game {
   activeScene?: Scene;
 
-  constructor() {}
+  constructor() {
+    console.debug("[Game] created");
+  }
 
   async init(): Promise<void> {
+    console.debug("[Game] init");
     if (this.activeScene) await this.activeScene.init();
   }
 
@@ -20,5 +23,6 @@ export class Game {
 
   setScene(s: Scene) {
     this.activeScene = s;
+    console.debug("[Game] setScene", s?.constructor?.name ?? s);
   }
 }

@@ -4,9 +4,11 @@ import type { IRenderer } from "../IRenderer";
 export class HUDLayer extends UILayer {
   constructor() {
     super("HUD");
+      console.debug("[HUDLayer] created");
   }
 
   async init(): Promise<void> {
+      console.debug("[HUDLayer] init");
     // initialize HUD resources
   }
 

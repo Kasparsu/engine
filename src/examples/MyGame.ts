@@ -2,6 +2,10 @@ import { BaseGame } from "../BaseGame";
 import type { IRenderer } from "../IRenderer";
 
 export class MyGame extends BaseGame {
+  constructor() {
+    super();
+    console.debug("[MyGame] created");
+  }
   override update(dt: number): void {
     // example game logic
   }

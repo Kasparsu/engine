@@ -11,9 +11,11 @@ export class App {
 
   constructor(cfg?: EngineConfig) {
     this.engine = new Engine(cfg);
+    console.debug("[App] created");
   }
 
   async start() {
+    console.debug("[App] start");
     await this.engine.run(this.game);
   }
 
