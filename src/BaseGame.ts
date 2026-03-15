@@ -1,4 +1,5 @@
-import { IGame, IRenderer } from "./IGame";
+import type { IGame } from "./IGame";
+import type { IRenderer } from "./IRenderer";
 
 export class BaseGame implements IGame {
   async init(): Promise<void> {

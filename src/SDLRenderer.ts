@@ -1,5 +1,5 @@
 import SDL from "bun-sdl3/src/SDL";
-import { IRenderer, SDLRendererHandle } from "./IRenderer";
+import type { IRenderer, SDLRendererHandle } from "./IRenderer";
 
 export class SDLRenderer implements IRenderer {
   instance: SDLRendererHandle;

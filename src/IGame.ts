@@ -1,4 +1,4 @@
-import { IRenderer } from "./IRenderer";
+import type { IRenderer } from "./IRenderer";
 
 export interface IGame {
   init(): Promise<void>;

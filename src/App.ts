@@ -1,9 +1,9 @@
 import { Engine } from "./Engine";
-import { IGame } from "./IGame";
-import { EngineConfig } from "./EngineConfig";
 import { Game } from "./Game";
 import { SDLWindow } from "./SDLWindow";
 import { SDLRenderer } from "./SDLRenderer";
+import type { IGame } from "./IGame";
+import type { EngineConfig } from "./EngineConfig";
 
 export class App {
   engine: Engine;

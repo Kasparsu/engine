@@ -1,4 +1,4 @@
-import { IRenderer } from "./IRenderer";
+import type { IRenderer } from "./IRenderer";
 
 export type InitFn = () => void | Promise<void>;
 export type UpdateFn = (dt: number) => void;

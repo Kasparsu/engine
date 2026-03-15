@@ -1,12 +1,12 @@
 import { BaseGame } from "./BaseGame";
-import { IRenderer } from "./IRenderer";
+import type { IRenderer } from "./IRenderer";
 
 export class MyGame extends BaseGame {
-  update(dt: number): void {
+  override update(dt: number): void {
     // example game logic
   }
 
-  draw(r: IRenderer): void {
+  override draw(r: IRenderer): void {
     r.setDrawColor(0, 128, 255, 255);
     r.clear();
     r.present();

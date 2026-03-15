@@ -1,5 +1,5 @@
 import SDL from "bun-sdl3/src/SDL";
-import { IWindow, SDLWindowHandle } from "./IWindow";
+import type { IWindow, SDLWindowHandle } from "./IWindow";
 
 export class SDLWindow implements IWindow {
   instance: SDLWindowHandle;
