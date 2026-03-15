@@ -65,6 +65,9 @@ export class Engine {
         this.renderer.clear();
         this.renderer.present();
       }
+      // yield to the JS event loop so the runtime can process window events and
+      // allow the window to appear on platforms where a tight sync loop blocks UI.
+      await new Promise((resolve) => setTimeout(resolve, 0));
     }
   }
 
