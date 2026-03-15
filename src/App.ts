@@ -34,7 +34,11 @@ export class App {
   }
 
   createRenderer() {
-    this.engine.renderer = new SDLRenderer(this.engine.window.raw);
+    if (!this.engine.window) {
+      // create a default window if none exists
+      this.createWindow("My Game", 800, 600);
+    }
+    this.engine.renderer = new SDLRenderer(this.engine.window!.raw);
     return this;
   }
 }

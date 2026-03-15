@@ -8,20 +8,28 @@ import { SDLRenderer } from "./SDLRenderer";
 import { InputManager } from "./InputManager";
 
 export class Engine {
-  window: IWindow;
-  renderer: IRenderer;
+  window?: IWindow;
+  renderer?: IRenderer;
   input: InputManager;
   private running = false;
+  private defaultTitle: string;
+  private defaultWidth: number;
+  private defaultHeight: number;
 
   constructor(cfg: EngineConfig | undefined = undefined, windowImpl?: IWindow, rendererImpl?: IRenderer) {
     const title = cfg?.title ?? "Hello World";
     const width = cfg?.width ?? 800;
     const height = cfg?.height ?? 600;
+    this.defaultTitle = title;
+    this.defaultWidth = width;
+    this.defaultHeight = height;
 
     SDL.init(SDL.INIT.VIDEO);
 
-    this.window = windowImpl ?? new SDLWindow(title, width, height);
-    this.renderer = rendererImpl ?? new SDLRenderer(this.window.raw);
+    // Do not create a default window/renderer here to avoid duplicate windows when
+    // the caller (App) wants to configure creation. Defer creation to run().
+    this.window = windowImpl;
+    this.renderer = rendererImpl;
     this.input = new InputManager();
     console.debug(`[Engine] created title=${title} size=${width}x${height}`);
   }
@@ -29,6 +37,10 @@ export class Engine {
   async run(game?: IGame): Promise<void> {
     this.running = true;
     console.debug("[Engine] run started");
+
+    // Ensure window/renderer exist before starting the loop.
+    if (!this.window) this.window = new SDLWindow(this.defaultTitle, this.defaultWidth, this.defaultHeight);
+    if (!this.renderer) this.renderer = new SDLRenderer(this.window.raw);
 
     if (game) await game.init();
 
