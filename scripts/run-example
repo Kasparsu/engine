@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Usage: bash scripts/run-example <example-name> [extra args]
+# default example: basic-black
+EXAMPLE=${1:-basic-black}
+shift || true
+
+PATH_TO="src/examples/${EXAMPLE}/index.ts"
+if [ ! -f "$PATH_TO" ]; then
+  echo "Example '$EXAMPLE' not found at $PATH_TO" >&2
+  exit 2
+fi
+
+echo "Running example: $EXAMPLE -> $PATH_TO"
+bun "$PATH_TO" "$@"

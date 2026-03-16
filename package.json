@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "example": "bun src/examples/basic-black/index.ts",
-    "examples": "bun src/examples/basic-black/index.ts"
+    "example": "bash scripts/run-example",
+    "examples": "bash scripts/run-example"
   },
   "dependencies": {
     "bun-sdl3": "git+https://github.com/Kasparsu/bun-sdl3.git"
