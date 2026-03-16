@@ -23,4 +23,56 @@ export class SDLRenderer implements IRenderer {
   present() {
     SDL.Renderer.present(this.instance);
   }
+
+  flush(): boolean {
+    return SDL.Renderer.flush(this.instance);
+  }
+
+  getDrawColor() {
+    return SDL.Renderer.getRenderDrawColorFloat(this.instance) ?? null;
+  }
+
+  createTexture(format: number, access: number, w: number, h: number) {
+    return SDL.Renderer.createTextureWithProperties(this.instance, format, access, w, h, null);
+  }
+
+  destroyTexture(texture: any) {
+    SDL.Renderer.destroyTexture(texture);
+  }
+
+  drawTexture(texture: any, src?: any, dst?: any) {
+    SDL.Renderer.renderTexture(this.instance, texture, src ?? null, dst ?? null);
+  }
+
+  drawTextureRotated(texture: any, src?: any, dst?: any, angle: number = 0, centerPtr: any = null, flip: number = 0) {
+    SDL.Renderer.renderTextureRotated(this.instance, texture, src ?? null, dst ?? null, angle, centerPtr, flip);
+  }
+
+  getTextureSize(texture: any) {
+    return SDL.Renderer.getTextureSize(texture);
+  }
+
+  setTextureAlpha(texture: any, alpha: number) {
+    return SDL.Renderer.setTextureAlphaMod(texture, alpha);
+  }
+
+  setTextureColor(texture: any, r: number, g: number, b: number) {
+    return SDL.Renderer.setTextureColorMod(texture, r, g, b);
+  }
+
+  setTextureBlendMode(texture: any, mode: number) {
+    return SDL.Renderer.setTextureBlendMode(texture, mode);
+  }
+
+  setTextureScaleMode(texture: any, mode: number) {
+    return SDL.Renderer.setTextureScaleMode(texture, mode);
+  }
+
+  setRenderTarget(target: any | null) {
+    return Boolean(SDL.Renderer.setRenderTarget(this.instance, target ?? null));
+  }
+
+  outputSize() {
+    return SDL.Renderer.getRenderOutputSize(this.instance);
+  }
 }
