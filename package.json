@@ -3,7 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "example": "bun src/examples/basic-black/index.ts",
+    "examples": "bun src/examples/basic-black/index.ts"
   },
   "dependencies": {
     "bun-sdl3": "git+https://github.com/Kasparsu/bun-sdl3.git"
