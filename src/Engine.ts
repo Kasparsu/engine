@@ -53,6 +53,24 @@ export class Engine {
         try {
           this.input.handleRawSDL(event);
         } catch {}
+
+        // Accept explicit keyboard shutdown keys in addition to window QUIT:
+        // - Escape key
+        // - Ctrl+Q
+        try {
+          if (event.type === SDL.Events.KEY_DOWN) {
+            const rawName = (event as any).keyName ?? String((event as any).key ?? "");
+            const key = (InputManager as any).normalizeKeyName
+              ? (InputManager as any).normalizeKeyName(String(rawName))
+              : String(rawName).toLowerCase();
+            const modNames: string[] = (event as any).modNames ?? [];
+            const hasCtrl = modNames.some((n) => String(n).toUpperCase().includes("CTRL"));
+            if (key === "escape" || (key === "q" && hasCtrl)) {
+              this.running = false;
+            }
+          }
+        } catch {}
+
         if (event.type === SDL.Events.QUIT) this.running = false;
       }
 

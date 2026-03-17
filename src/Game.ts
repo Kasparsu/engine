@@ -18,9 +18,6 @@ export class Game {
   }
 
   draw(r: IRenderer): void {
-     r.setDrawColor(0, 128, 255, 255);
-    r.clear();
-    r.present();
     if (this.activeScene) this.activeScene.draw(r);
     
   }
