@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "test": "bun test",
     "example": "bash scripts/run-example",
     "examples": "bash scripts/run-example"
   },
